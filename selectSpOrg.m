@@ -32,6 +32,7 @@ scatter(X,Y, 150,'o','linewidth', 2, 'MarkerEdgeColor',[240	206	70]/256, 'Marker
 button = uicontrol('Position',[300 15 150 30],'String','Done',...
     'Callback', @Done);
 
+%-------------------------------------------------
 %% This needs to be this way sorry
 load("tempfile.mat")
 electrode_id = parseIndexes(pos,X, Y);
