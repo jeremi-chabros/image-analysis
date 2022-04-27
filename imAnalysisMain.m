@@ -7,7 +7,7 @@
 %   countNeurons.m
 
 clearvars; clc;
-imname = 'richnhighres1.jpg';
+imname = 'IMG_4525.jpg';
 I = imread(imname);
 windowSize = 300; % size of the cropped image
 [ROI, xl, yl] = manualCount(imname, windowSize); % Manual counting

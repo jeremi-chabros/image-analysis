@@ -22,14 +22,14 @@ function [ROI, xl, yl] = manualCount(imname, windowSize)
 % count
 
 I = imread(imname);
-I = imsharpen(I, 'threshold', 0.2, 'amount', 1.5, 'radius', 1);
+% I = imsharpen(I, 'threshold', 0.2, 'amount', 1.5, 'radius', 1);
 imshow(I);
 title('Select regions of interest and click "Done"')
 
-xl = randi([1,size(I, 1)-windowSize],1);
-yl = randi([1,size(I, 2)-windowSize],1);
-xlim([xl xl+windowSize])
-ylim([yl yl+windowSize])
+% xl = randi([1,size(I, 1)-windowSize],1);
+% yl = randi([1,size(I, 2)-windowSize],1);
+% xlim([xl xl+windowSize])
+% ylim([yl yl+windowSize])
 
 button = uicontrol('Position',[300 15 150 30],'String','Done',...
     'Callback', @Done);
