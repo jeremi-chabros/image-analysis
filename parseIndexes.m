@@ -1,4 +1,5 @@
-function parseIndexes(pos)
+function electrode_id = parseIndexes(pos,X,Y)
+
 for i = 1:size(pos,1)
 
     xpos = find(pos(i,1)==X);
@@ -12,4 +13,5 @@ for i = 1:size(pos,1)
 
     electrode_id(i) = 10*column + row;
 end
+
 end

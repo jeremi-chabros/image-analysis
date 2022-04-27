@@ -1,5 +1,6 @@
 clearvars; clc;
 imname = 'IMG_4525.jpg';
+construct_id = '';
 I = imread(imname);
 
 tit1 = 'Select second row and click "Done"';
@@ -14,10 +15,8 @@ tit2 = 'Select electrodes: 21, 71,  28, 78 (IN THIS ORDER)';
 corners = getROIs(imname, tit2);
 
 
-xst = corners(1,1)-ie_dist:ie_dist:
-
-x = corners(1,1)-ie_dist:ie_dist:corners(4,1)+2*ie_dist;
-y = corners(1,2):ie_dist:corners(4,2);
+x = corners(1,1)-ie_dist:ie_dist:corners(1,1)+6*ie_dist;
+y = corners(1,2):ie_dist:corners(1,2)+7*ie_dist;
 [X,Y] = meshgrid(x,y);
 
 imshow(I);
@@ -27,7 +26,15 @@ scatter(X,Y, 150,'o','linewidth', 2, 'MarkerEdgeColor',[240	206	70]/256, 'Marker
 button = uicontrol('Position',[300 15 150 30],'String','Done',...
     'Callback', @Done);
 
+%% This needs to be this way sorry
+load("tempfile.mat")
+electrode_id = parseIndexes(pos,X, Y);
+save([imname(1:end-4) '.mat'],'electrode_id');
 
+
+
+%--------------------------------------------
+%% Function for the button
 function Done(button, EventData)
 d = datacursormode(gcf);
 vals = getCursorInfo(d);

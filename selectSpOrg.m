@@ -1,3 +1,9 @@
+% 1) Set imname to the photo file (if not in the same folder, then specify
+% path in the filename)
+% 2) On default, the results will be saved as the same file name with .mat
+% extension. If you want to input custom name, do it in the construct_id
+% variable (remember about the .mat extension!)
+
 clearvars; clc;
 imname = 'IMG_4525.jpg';
 construct_id = '';
@@ -26,7 +32,20 @@ scatter(X,Y, 150,'o','linewidth', 2, 'MarkerEdgeColor',[240	206	70]/256, 'Marker
 button = uicontrol('Position',[300 15 150 30],'String','Done',...
     'Callback', @Done);
 
+%% This needs to be this way sorry
+load("tempfile.mat")
+electrode_id = parseIndexes(pos,X, Y);
 
+if length(construct_id) < 4
+    save([imname(1:end-4) '.mat'],'electrode_id');
+else
+    save(construct_id,'electrode_id');
+end
+
+
+
+%--------------------------------------------
+%% Function for the button
 function Done(button, EventData)
 d = datacursormode(gcf);
 vals = getCursorInfo(d);
